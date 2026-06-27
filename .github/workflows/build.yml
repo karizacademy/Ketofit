@@ -34,7 +34,8 @@ jobs:
 
       - name: Set API URL
         run: |
-          sed -i 's|YOUR_SERVER_IP|${{ secrets.KETOFIT }}|g' ketofit/frontend/src/App.jsx
+          sed -i "s|process.env.REACT_APP_API_URL || \"https://YOUR_SERVER_IP:3001\"|\"http://77.110.116.62:3001\"|g" ketofit/frontend/src/App.jsx
+          grep "API_BASE" ketofit/frontend/src/App.jsx
 
       - name: Build React
         run: |
