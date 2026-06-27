@@ -36,13 +36,6 @@ jobs:
         run: |
           sed -i 's|YOUR_SERVER_IP|${{ secrets.KETOFIT }}|g' ketofit/frontend/src/App.jsx
 
-      - name: Bypass login
-        run: |
-          sed -i 's/const \[user, setUser\] = useState(null);/const [user, setUser] = useState("09000000000");/' ketofit/frontend/src/App.jsx
-          sed -i 's/const \[profile, setProfile\] = useState(null);/const [profile, setProfile] = useState({gender:"male",goal:"loss",dietIntensity:"moderate",age:30,height:175,weight:80,activity:"medium",foodPrefs:["meat","chicken","egg","dairy","vegetable"]});/' ketofit/frontend/src/App.jsx
-          sed -i 's/if (!user) return <div style={wrap}><LoginScreen onLogin={handleLogin} \/><\/div>;//' ketofit/frontend/src/App.jsx
-          sed -i 's/if (!profile) return <div style={wrap}><Onboarding onSave={handleSaveProfile} saving={savingProfile} \/><\/div>;//' ketofit/frontend/src/App.jsx
-
       - name: Build React
         run: |
           cd ketofit/frontend
