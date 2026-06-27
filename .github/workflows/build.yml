@@ -49,6 +49,21 @@ jobs:
           npx cap add android
           npx cap sync android
 
+      - name: Allow HTTP
+        run: |
+          mkdir -p ketofit/frontend/android/app/src/main/res/xml
+          cat > ketofit/frontend/android/app/src/main/res/xml/network_security_config.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <network-security-config>
+              <base-config cleartextTrafficPermitted="true">
+                  <trust-anchors>
+                      <certificates src="system"/>
+                  </trust-anchors>
+              </base-config>
+          </network-security-config>
+          EOF
+          sed -i 's/android:label="ketofit"/android:label="ketofit" android:networkSecurityConfig="@xml\/network_security_config"/' ketofit/frontend/android/app/src/main/AndroidManifest.xml
+
       - name: Build APK
         run: |
           cd ketofit/frontend/android
