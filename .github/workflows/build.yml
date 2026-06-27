@@ -1,4 +1,4 @@
-name: Build APK
+g'Build APK
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Set API URL
         run: |
-          sed -i 's|YOUR_SERVER_IP|${{ secrets.API_URL }}|g' ketofit/frontend/src/App.jsx
+          sed -i 's|YOUR_SERVER_IP|http://77.110.116.62:3001|g' ketofit/frontend/src/App.jsx
 
       - name: Build React
         run: |
