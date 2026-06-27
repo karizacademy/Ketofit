@@ -34,7 +34,16 @@ jobs:
 
       - name: Set API URL
         run: |
-          sed -i "s|process.env.REACT_APP_API_URL || \"https://YOUR_SERVER_IP:3001\"|\"http://77.110.116.62:3001\"|g" ketofit/frontend/src/App.jsx
+          python3 -c "
+          f = open('ketofit/frontend/src/App.jsx', 'r')
+          content = f.read()
+          f.close()
+          content = content.replace('process.env.REACT_APP_API_URL || \"https://YOUR_SERVER_IP:3001\"', '\"http://77.110.116.62:3001\"')
+          f = open('ketofit/frontend/src/App.jsx', 'w')
+          f.write(content)
+          f.close()
+          print('Done')
+          "
           grep "API_BASE" ketofit/frontend/src/App.jsx
 
       - name: Build React
