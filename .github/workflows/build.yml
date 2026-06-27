@@ -41,14 +41,14 @@ jobs:
           cd ketofit/frontend
           CI=false npm run build
 
-      
-- name: Capacitor setup
+      - name: Capacitor setup
         run: |
           cd ketofit/frontend
           rm -f capacitor.config.ts
           npx cap init "ketofit" "app.ketofit.ir" --web-dir build
           npx cap add android
           npx cap sync android
+
       - name: Build APK
         run: |
           cd ketofit/frontend/android
