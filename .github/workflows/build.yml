@@ -1,4 +1,4 @@
-g'Build APK
+name: Build APK
 
 on:
   push:
@@ -60,4 +60,4 @@ jobs:
         with:
           name: ketofit-apk
           path: ketofit/frontend/android/app/build/outputs/apk/debug/app-debug.apk
-
+          
